@@ -1,41 +1,59 @@
-import random 
-import string
-global t,n,lost_w,uncommon
-t=1
-lost_w=0
-uncommon=0
-n=random.randint(1,9)
+import datetime
+import random
+ans_num = 10
+lost_w=2
+repeat_m=5
+repeat=0
+ans_list=[]
+mode=False
 
-def syutudai():
-    list_a = list(string.ascii_uppercase) #list_a全てのアルファベット
-    alphabet=[] #選ばれるやつ１０こ
-    alphabet=random.sample(list_a, 10)
-    point_alpha=[] #欠損文字
-    rand_alpha=random.shuffle(alphabet)
-    print(f"対象文字：\n{rand_alpha}")
-    point_alpha=random.sample(rand_alpha, n)
-    uncommon = set(alphabet) ^ set(point_alpha)
-    print(f"表示文字：\n{uncommon}\n")
-    lost_w=len(uncommon)
-
-def kaitou():
-    A1=input(f"欠損文字はいくつあるでしょうか？：{A1}")
-    if A1 == lost_w:
-        print("正解です.それでは、具体的な欠損文字を１つずつ入力してください")
-        while (t <= lost_w):
-            A2=input(f"{t}つ目の文字を入力してください：{A2}")
-            if A2 in uncommon:
-                t+=1
-            else:
-                default()
-                break
-    else:
-        default()
-
-def default():
-    print("不正解です.またチャレンジしてください")
+def alphabets():
+    global ans_num, lost_w, ans_list
+    alp=[]
+    for i in range(ans_num):
+        number=random.randint(65,90)
+        alphabet=chr(number)
+        alp+=alphabet
+    print(f"対象文字:\n{alp}")
+    n=ans_num
+    for j in range(lost_w):
+        n-=1
+        luck=random.randint(0,n)
+        ans_list+=alp.pop(luck)
+    print(f"表示文字:\n{alp}")
+    #print(ans)
 
 def main():
-    syutudai()
+    st = datetime.datetime.now()
+    while mode==False:
+        alphabets()
+        que()
+        if repeat == repeat_m:
+            break
+        else:
+            continue
+    ed = datetime.datetime.now()
+    print(f"繰り返し回数:{repeat_m}")
+    print(f"かかった時間(s):{(ed-st).seconds}")
 
-main()
+def que():
+    global lost_w, ans_list, mode, repeat_m, repeat
+    x=int(input("欠損文字はいくつあるでしょうか？"))
+    if x==2:
+        print("正解です。それでは、具体的に欠損文字を一つずつ入力してください")
+        z=input("1つ目の文字を入力してください")
+        result = z in ans_list
+        if result==True:
+            z2=input("2つ目の文字を入力してください")
+            result2 = z2 in ans_list
+            if result2==True:
+                print("正解")
+                mode=True
+        else:
+            print("不正解です.またチャレンジしてください")
+            repeat+=1
+    else:
+        print("不正解です.またチャレンジしてください")
+        repeat+=1
+if __name__ == "__main__":
+    main()
