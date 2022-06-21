@@ -16,7 +16,7 @@ if __name__ == '__main__':
     entry.grid(row=0,column=0,columnspan=3)
 
     r,c=1,0
-    for i,num in enumerate([9,8,7,6,5,4,3,2,1,0]+["+"]):
+    for i,num in enumerate([9,8,7,6,5,4,3,2,1,0,"+"]):
         btn =tk.Button(root,
                        text=num,
                        width=4,
