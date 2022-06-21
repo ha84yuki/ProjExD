@@ -25,7 +25,7 @@ def click_clear(event):#一文字削除
     entry.insert(tk.END,str(cl2))
 
 def click_luckycolor(event):
-    entry.delete(0,tk.END)
+    entry.delete(0, tk.END)
     color_n=randint(1,7)
     if color_n==1:
         color="赤"
