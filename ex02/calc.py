@@ -8,13 +8,13 @@ def button_click(event):
     #tkm.showinfo("",f"{i}のボタンがクリックされました")
     entry.insert(tk.END,i)
 
-def click_eqall(event):#=の関数
+def click_equal(event):#=の関数
     eqn=entry.get()
     res=eval(eqn)
     entry.delete(0,tk.END)
     entry.insert(tk.END,str(res))
 
-def click_alclear(event):#文字列全削除
+def click_allclear(event):#文字列全削除
     entry.delete(0,tk.END)
     entry.insert(tk.END)
     
@@ -24,7 +24,7 @@ def click_clear(event):#一文字削除
     entry.delete(0,tk.END)
     entry.insert(tk.END,str(cl2))
 
-def click_lucky(event):
+def click_luckycolor(event):
     entry.delete(0,tk.END)
     color_n=randint(1,7)
     if color_n==1:
@@ -70,13 +70,13 @@ if __name__ == '__main__':
         btn.grid(row=r,column=c)
         c+=1
         if num=="=":
-            btn.bind("<1>",click_eqall)
+            btn.bind("<1>",click_equal)
         if num=="AC":
-            btn.bind("<1>",click_alclear)
+            btn.bind("<1>",click_allclear)
         if num=="C":
             btn.bind("<1>",click_clear)
         if num=="LC":
-            btn.bind("<1>",click_lucky)
+            btn.bind("<1>",click_luckycolor)
         if (i+1)%4==0:
             r+=1
             c=0
