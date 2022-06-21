@@ -9,7 +9,7 @@ def button_click(event):
 
 if __name__ == '__main__':
     root = tk.Tk()
-    root.geometry("300x600")
+    #root.geometry("300x600")
     root.title("電卓")
 
     entry = tk.Entry(root, justify="right",width=10,font=("Times New Roman",40))
