@@ -4,11 +4,12 @@ import tkinter.messagebox as tkm
 def button_click(event):
     btn=event.widget
     i = btn["text"]
-    tkm.showinfo("",f"{i}のボタンがクリックされました")
+    #tkm.showinfo("",f"{i}のボタンがクリックされました")
+    entry.insert(tk.END,i)
 
 if __name__ == '__main__':
     root = tk.Tk()
-    root.geometry("300x500")
+    root.geometry("300x600")
     root.title("電卓")
 
     entry = tk.Entry(root, justify="right",width=10,font=("Times New Roman",40))
