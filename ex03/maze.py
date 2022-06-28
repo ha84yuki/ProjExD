@@ -8,4 +8,8 @@ if __name__ == "__main__":
     canvas=tk.Canvas(root,width=1500,height=900,background='black')#サイズと背景色
     canvas.pack()
 
+    tori= tk.PhotoImage(file='fig/2.png')#こうかとん配置
+    cx,cy=300,400
+    canvas.create_image(cx,cy,image=tori,tag='tori')
+    
     root.mainloop()
