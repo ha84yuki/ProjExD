@@ -1,9 +1,6 @@
-from itertools import count
-import random
+
 import tkinter as tk
 import tkinter.messagebox as tkm
-from turtle import back
-from unittest import skip
 import maze_maker as mk
 global goal
 goal=True
