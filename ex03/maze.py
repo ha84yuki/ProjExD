@@ -1,11 +1,11 @@
 import tkinter as tk
 import tkinter.messagebox as tkm
-from unittest import skip
 import maze_maker as mk
 
 def key_down(event):
     global key 
     key=event.keysym
+
 def key_up(event):
     global key
     key=""
