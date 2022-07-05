@@ -9,7 +9,7 @@ st=datetime.datetime.now()
 
 def main():
     clock=pg.time.Clock()
-    #練習１
+    #練習１　ウインドウ作成
     pg.display.set_caption("逃げろ！こうかとん")
     screen_sfc=pg.display.set_mode((1600,900))  #画面用Surface
     screen_rct= screen_sfc.get_rect()           #画面用Rect
@@ -17,7 +17,7 @@ def main():
     bgimg_rct=bgimg_sfc.get_rect()               #背景画像用のRect
     screen_sfc.blit(bgimg_sfc,bgimg_rct)             #背景画像用Surfaceを画面用Surfaceに貼り付ける
 
-    #練習３
+    #練習３　こうかとん
     num= random.randint(0,9)
     kkimg_sfc=pg.image.load(f"fig/{num}.png")             #こうかとん画像用のSurface
     kkimg_sfc= pg.transform.rotozoom(kkimg_sfc,0,2.0)
@@ -25,7 +25,7 @@ def main():
     kkimg_rct.center=900,400                        #こうかとん画像の中心座標を設定する
     screen_sfc.blit(kkimg_sfc,kkimg_rct)                 #こうかとん画像用Surfaceを画面用Surfaceに貼り付ける
 
-    #練習５
+    #練習５　爆弾
     bmimg_sfc = pg.Surface((20,20))   #Surface
     bmimg_sfc.set_colorkey((0,0,0,))#爆弾用のSurface
     pg.draw.circle(bmimg_sfc, (255, 0, 0), (10,10), 10)  #爆弾用のSurfaceに円を描く
@@ -36,7 +36,7 @@ def main():
     bmimg_rct2.centerx = random.randint(0, screen_rct.width)
     bmimg_rct2.centery = random.randint(0, screen_rct.height) 
     vx,vy= +1,+1
-    vxx,vyy=+1,+1
+    vxx,vyy=+3,+3
     
     while True:
         screen_sfc.blit(bgimg_sfc,bgimg_rct)               #背景画像用Surfaceを画面用Surfaceに貼り付ける
@@ -45,7 +45,7 @@ def main():
         for event in pg.event.get():
             if event.type==pg.QUIT: return
         
-        #練習４
+        #練習４　移動可能
         key_states= pg.key.get_pressed()
         if key_states[pg.K_UP]==True: kkimg_rct.centery -= 1       #key上が押されているならばy方向に-1
         if key_states[pg.K_DOWN]==True: kkimg_rct.centery += 1     #key上が押されているならばy方向に+1
@@ -58,16 +58,16 @@ def main():
             if key_states[pg.K_RIGHT]==True: kkimg_rct.centerx -= 1 
         screen_sfc.blit(kkimg_sfc,kkimg_rct)             #こうかとん画像の更新
 
-        #練習６
+        #練習６　ばくだん移動
         bmimg_rct.move_ip(vx,vy)
         bmimg_rct2.move_ip(vxx,vyy)
         screen_sfc.blit(bmimg_sfc,bmimg_rct)                     #爆弾用のSurfaceを画面用Surfaceに貼り付ける
         screen_sfc.blit(bmimg_sfc,bmimg_rct2)
 
-        #練習５
+        #練習５　円ランダム作成
         screen_sfc.blit(bmimg_sfc,bmimg_rct)
 
-        #練習７
+        #練習７　壁
         x,y = check_bound(bmimg_rct,screen_rct)
         vx*=x
         vy*=y
@@ -82,7 +82,7 @@ def main():
         txt = fonto.render(str(tmr), True,(0,0,0))
         screen_sfc.blit(txt,(100,100))
 
-        #練習８
+        #練習８　壁判定
         if kkimg_rct.colliderect(bmimg_rct) or kkimg_rct.colliderect(bmimg_rct2): 
             kkimg_sfc=pg.image.load("fig/bakuhatsu.png")
             screen_sfc.blit(kkimg_sfc, kkimg_rct)
