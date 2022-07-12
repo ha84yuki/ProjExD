@@ -81,8 +81,7 @@ class CUONTDOWN():
         self.TMR=TMP
         self.fonto=pg.font.Font(None,80)
         self.txt=self.fonto.render('{:.0f}'.format(self.TMR),True,(0,0,0))
-        
-        
+         
     def update(self):
         self.fonto=pg.font.Font(None,80)
         self.txt=self.fonto.render('{:.0f}'.format(self.TMR),True,(0,0,0))
@@ -108,7 +107,6 @@ def main():
 
     while True:
         scr.blit()
-
         # 練習2
         for event in pg.event.get():
             if event.type == pg.QUIT: return
@@ -117,7 +115,10 @@ def main():
         bkd.update(scr)
         bkd2.update(scr)
         bkd3.update(scr)
-        if kkt.rct.colliderect(bkd.rct) or kkt.rct.colliderect(bkd2.rct) or kkt.rct.colliderect(bkd3.rct):
+
+        if kkt.rct.colliderect(bkd.rct) or \
+           kkt.rct.colliderect(bkd2.rct) or \
+           kkt.rct.colliderect(bkd3.rct):
             return
 
         scr.sfc.blit(cd.txt,(200,200))
@@ -142,11 +143,13 @@ def check_bound(rct, scr_rct):
     if rct.top  < scr_rct.top  or scr_rct.bottom < rct.bottom: tate = -1 # 領域外
     return yoko, tate
 
+
 def tmr_c(tms):#のこり0秒か判定
     global STATE
     if tms ==0:
         STATE=True
         return True
+
 
 def crear():#Gamecrear処理
     pg.display.set_caption("逃げろ！こうかとん")
@@ -156,11 +159,11 @@ def crear():#Gamecrear処理
     while True:
         for event in pg.event.get():
             if event.type==pg.QUIT: return
-        g_img=pg.image.load("fig/text_gameclear_j.png")             #クリア画像用のSurface
-        g_img= pg.transform.rotozoom(g_img,0,0.3)
-        g_rect=g_img.get_rect()                   #クリア画像用のRect
-        g_rect.center=480,102                      #クリア画像の中心座標を設定する
-        screen.blit(g_img,g_rect) 
+        g_image=pg.image.load("fig/text_gameclear_j.png")   #クリア画像用のSurface
+        g_image= pg.transform.rotozoom(g_image,0,0.3)
+        g_rct=g_image.get_rect()                   #クリア画像用のRect
+        g_rct.center=480,102                     #クリア画像の中心座標を設定する
+        screen.blit(g_image,g_rct) 
         pg.display.update()
 
 
