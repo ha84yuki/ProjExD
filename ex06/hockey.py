@@ -122,7 +122,7 @@ def main():
     score1=0
     score2=0
     clock = pg.time.Clock()
-    scr = Screen("エアホッケー", (1600, 900), "fig/back.png")
+    scr = Screen("エアホッケー", (1600, 900), "fig/black.jpg")
     bar = Bar("fig/line.jpg",0.225, (800, 450))
     w1 = Wall1("fig/line_chain_gold.png",0.15, (1550, 450))
     w2 = Wall2("fig/line_chain_silver.png",0.15, (50, 450))
