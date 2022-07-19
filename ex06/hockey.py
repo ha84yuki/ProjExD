@@ -106,15 +106,15 @@ class Bar:
 
 class Score:
     def __init__(self, score1, score2):
-        self.fonto = pg.font.Font(None,100)
+        self.fonto = pg.font.Font(None,100)#フォント設定
         self.txt = self.fonto.render(f"{score1}    -    {score2}",
         True,(255,255,255))#点数表示
 
     def blit(self,scr:Screen):
-        scr.sfc.blit(self.txt,(675,200))
+        scr.sfc.blit(self.txt,(675,200)) #表示場所指定
 
     def update(self,scr:Screen):
-        self.blit(scr)
+        self.blit(scr) #更新
 
 
 def main():
@@ -122,15 +122,14 @@ def main():
     score1=0
     score2=0
     clock = pg.time.Clock()
-    scr = Screen("エアホッケー", (1600, 900), "fig/black.jpg")
+    scr = Screen("エアホッケー", (1600, 900), "fig/back.png")
     bar = Bar("fig/line.jpg",0.225, (800, 450))
     w1 = Wall1("fig/line_chain_gold.png",0.15, (1550, 450))
     w2 = Wall2("fig/line_chain_silver.png",0.15, (50, 450))
     ball = Ball((255,0,0), 30, (+3,+2), scr)
-    score = Score(score1,score2)
+    sb = Score(score1,score2)
 
     while True:
-        sb = Score(score1,score2)
         scr.blit()
         sb.blit(scr)
 
@@ -138,22 +137,22 @@ def main():
             if event.type == pg.QUIT: 
                 return
 
-        if w1.rct.colliderect(ball.rct):
+        if w1.rct.colliderect(ball.rct): #衝突処理
             ball.vx *=-1
 
-        if w2.rct.colliderect(ball.rct):
+        if w2.rct.colliderect(ball.rct): #衝突処理
             ball.vx *=-1
         
-        if bar.rct.colliderect(ball.rct):
+        if bar.rct.colliderect(ball.rct): #衝突処理
             ball.vx *=-1
 
-        if ball.rct.left < scr.rct.left:
+        if ball.rct.left < scr.rct.left: #スコア増やす
             score1+=1
-            score = Score(score1,score2)
+            sb = Score(score1,score2)
             
-        if ball.rct.right > scr.rct.right:
+        if ball.rct.right > scr.rct.right: #スコア増やす
             score2+=1
-            score = Score(score1,score2)
+            sb = Score(score1,score2)
         
         if score1==5 or score2 == 5:
             return
